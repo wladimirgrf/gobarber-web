@@ -1,8 +1,12 @@
 import React from 'react';
-import { FiLogIn } from 'react-icons/fi';
+import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
 import logoImg from '../../assets/logo.svg';
+
 import { Container, Content, Background } from './styles';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 const SignIn: React.FunctionComponent = () => (
   <Container>
@@ -12,10 +16,15 @@ const SignIn: React.FunctionComponent = () => (
       <form>
         <h1>Log In</h1>
 
-        <input placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <Input name="email" icon={FiMail} placeholder="Email" />
+        <Input
+          name="password"
+          icon={FiLock}
+          type="password"
+          placeholder="Password"
+        />
 
-        <button type="submit">Log In</button>
+        <Button type="submit">Log In</Button>
 
         <a href="forgot">Forgot password?</a>
       </form>
