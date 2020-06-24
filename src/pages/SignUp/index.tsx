@@ -23,10 +23,7 @@ const SignUp: React.FunctionComponent = () => {
         email: Yup.string()
           .required('E-mail is required.')
           .email('Please enter a valid email address.'),
-        password: Yup.string().min(
-          6,
-          'Password is too short. It must be at least 6 characters long.',
-        ),
+        password: Yup.string().min(6, 'Minimum of 6 characters.'),
       });
 
       await schema.validate(data, {
