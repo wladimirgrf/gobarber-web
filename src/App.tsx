@@ -4,7 +4,7 @@ import React from 'react';
 import SignIn from './pages/SignIn';
 import GlobalStyle from './styles/global';
 
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './hooks/AuthContext';
 
 const App: React.FunctionComponent = () => (
   <>
