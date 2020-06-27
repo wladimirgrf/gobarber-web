@@ -52,7 +52,11 @@ const SignIn: React.FunctionComponent = () => {
           formRef.current?.setErrors(errors);
         }
 
-        addToast();
+        addToast({
+          type: 'error',
+          title: 'Authentication error!',
+          description: 'We coul not find an account with that credentials',
+        });
       }
     },
     [signIn, addToast],
