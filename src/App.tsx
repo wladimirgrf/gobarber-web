@@ -5,13 +5,14 @@ import SignIn from './pages/SignIn';
 import GlobalStyle from './styles/global';
 
 import ToastContainer from './components/ToastContainer';
-import { AuthProvider } from './hooks/AuthContext';
+
+import AppProvider from './hooks';
 
 const App: React.FunctionComponent = () => (
   <>
-    <AuthProvider>
+    <AppProvider>
       <SignIn />
-    </AuthProvider>
+    </AppProvider>
 
     <ToastContainer />
 
