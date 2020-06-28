@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -13,7 +14,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import logoImg from '../../assets/logo.svg';
-import { Container, Content, Background } from './styles';
+import { Container, Content, AnimationContainer, Background } from './styles';
 
 interface SignInFormData {
   email: string;
@@ -50,6 +51,7 @@ const SignIn: React.FunctionComponent = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
+          return;
         }
 
         addToast({
@@ -65,28 +67,30 @@ const SignIn: React.FunctionComponent = () => {
   return (
     <Container>
       <Content>
-        <img src={logoImg} alt="GoBarber" />
+        <AnimationContainer>
+          <img src={logoImg} alt="GoBarber" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Log In</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Log In</h1>
 
-          <Input name="email" icon={FiMail} placeholder="Email" />
-          <Input
-            name="password"
-            icon={FiLock}
-            type="password"
-            placeholder="Password"
-          />
+            <Input name="email" icon={FiMail} placeholder="Email" />
+            <Input
+              name="password"
+              icon={FiLock}
+              type="password"
+              placeholder="Password"
+            />
 
-          <Button type="submit">Log In</Button>
+            <Button type="submit">Log In</Button>
 
-          <a href="forgot">Forgot password?</a>
-        </Form>
+            <a href="forgot">Forgot password?</a>
+          </Form>
 
-        <a href="SignUp">
-          <FiLogIn />
-          Sign up today.
-        </a>
+          <Link to="/signup">
+            <FiLogIn />
+            Sign up today.
+          </Link>
+        </AnimationContainer>
       </Content>
       <Background />
     </Container>

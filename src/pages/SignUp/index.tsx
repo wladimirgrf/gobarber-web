@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -9,7 +10,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import logoImg from '../../assets/logo.svg';
-import { Container, Content, Background } from './styles';
+import { Container, Content, AnimationContainer, Background } from './styles';
 
 const SignUp: React.FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null);
@@ -40,27 +41,29 @@ const SignUp: React.FunctionComponent = () => {
     <Container>
       <Background />
       <Content>
-        <img src={logoImg} alt="GoBarber" />
+        <AnimationContainer>
+          <img src={logoImg} alt="GoBarber" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Sign Up for GoBarber</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Sign Up for GoBarber</h1>
 
-          <Input name="name" icon={FiUser} placeholder="Name" />
-          <Input name="email" icon={FiMail} placeholder="Email" />
-          <Input
-            name="password"
-            icon={FiLock}
-            type="password"
-            placeholder="Password"
-          />
+            <Input name="name" icon={FiUser} placeholder="Name" />
+            <Input name="email" icon={FiMail} placeholder="Email" />
+            <Input
+              name="password"
+              icon={FiLock}
+              type="password"
+              placeholder="Password"
+            />
 
-          <Button type="submit">Sign Up</Button>
-        </Form>
+            <Button type="submit">Sign Up</Button>
+          </Form>
 
-        <a href="SignUp">
-          <FiArrowLeft />
-          Log In.
-        </a>
+          <Link to="/">
+            <FiArrowLeft />
+            Log In.
+          </Link>
+        </AnimationContainer>
       </Content>
     </Container>
   );
