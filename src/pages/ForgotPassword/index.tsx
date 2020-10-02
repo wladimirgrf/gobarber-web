@@ -1,11 +1,10 @@
 import React, { useCallback, useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+import { FiLogIn, FiMail } from 'react-icons/fi';
 
-import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -16,20 +15,18 @@ import Button from '../../components/Button';
 import logoImg from '../../assets/logo.svg';
 import { Container, Content, AnimationContainer, Background } from './styles';
 
-interface SignInFormData {
+interface ForgotPasswordFormData {
   email: string;
-  password: string;
 }
 
-const SignIn: React.FunctionComponent = () => {
+const ForgotPassword: React.FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null);
-  const history = useHistory();
+  // const history = useHistory();
 
-  const { signIn } = useAuth();
   const { addToast } = useToast();
 
   const handleSubmit = useCallback(
-    async (data: SignInFormData) => {
+    async (data: ForgotPasswordFormData) => {
       try {
         formRef.current?.setErrors({});
 
@@ -37,19 +34,15 @@ const SignIn: React.FunctionComponent = () => {
           email: Yup.string()
             .required('E-mail is required.')
             .email('Please enter a valid email address.'),
-          password: Yup.string().required('Password is required.'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await signIn({
-          email: data.email,
-          password: data.password,
-        });
+        // password recovery
 
-        history.push('/dashboard');
+        // history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -59,12 +52,12 @@ const SignIn: React.FunctionComponent = () => {
 
         addToast({
           type: 'error',
-          title: 'Authentication error!',
-          description: 'We could not find an account with that credentials',
+          title: 'Password recovery error!',
+          description: 'We could not recovery your password. Try again later.',
         });
       }
     },
-    [signIn, addToast, history],
+    [addToast],
   );
 
   return (
@@ -74,24 +67,16 @@ const SignIn: React.FunctionComponent = () => {
           <img src={logoImg} alt="GoBarber" />
 
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Log In</h1>
+            <h1>Forgot your password?</h1>
 
             <Input name="email" icon={FiMail} placeholder="Email" />
-            <Input
-              name="password"
-              icon={FiLock}
-              type="password"
-              placeholder="Password"
-            />
 
-            <Button type="submit">Log In</Button>
-
-            <Link to="/forgot-password">Forgot password?</Link>
+            <Button type="submit">Send Reset Instructions</Button>
           </Form>
 
-          <Link to="/signup">
+          <Link to="/">
             <FiLogIn />
-            Sign up today.
+            Log In
           </Link>
         </AnimationContainer>
       </Content>
@@ -100,4 +85,4 @@ const SignIn: React.FunctionComponent = () => {
   );
 };
 
-export default SignIn;
+export default ForgotPassword;
