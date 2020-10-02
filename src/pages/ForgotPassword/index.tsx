@@ -1,9 +1,11 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FiLogIn, FiMail } from 'react-icons/fi';
+
+import api from '../../services/api';
 
 import { useToast } from '../../hooks/toast';
 
@@ -20,6 +22,7 @@ interface ForgotPasswordFormData {
 }
 
 const ForgotPassword: React.FunctionComponent = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
   // const history = useHistory();
 
@@ -28,6 +31,8 @@ const ForgotPassword: React.FunctionComponent = () => {
   const handleSubmit = useCallback(
     async (data: ForgotPasswordFormData) => {
       try {
+        setLoading(true);
+
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -40,7 +45,15 @@ const ForgotPassword: React.FunctionComponent = () => {
           abortEarly: false,
         });
 
-        // password recovery
+        await api.post('/password/forgot', {
+          email: data.email,
+        });
+
+        addToast({
+          type: 'success',
+          title: 'Reset password instructions sent!',
+          description: `Instructions to reset your password have been sent to ${data.email}`,
+        });
 
         // history.push('/dashboard');
       } catch (err) {
@@ -55,6 +68,8 @@ const ForgotPassword: React.FunctionComponent = () => {
           title: 'Password recovery error!',
           description: 'We could not recovery your password. Try again later.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [addToast],
@@ -71,7 +86,9 @@ const ForgotPassword: React.FunctionComponent = () => {
 
             <Input name="email" icon={FiMail} placeholder="Email" />
 
-            <Button type="submit">Send Reset Instructions</Button>
+            <Button loading={loading} type="submit">
+              Send Reset Instructions
+            </Button>
           </Form>
 
           <Link to="/">
