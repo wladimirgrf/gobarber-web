@@ -1,9 +1,18 @@
 import React from 'react';
-import { FiPower } from 'react-icons/fi';
+import { FiPower, FiClock } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
 
-import { Container, Header, HeaderContent, Profile } from './styles';
+import {
+  Container,
+  Header,
+  HeaderContent,
+  Profile,
+  Content,
+  Schedule,
+  NextAppointment,
+  Calendar,
+} from './styles';
 import logoImg from '../../assets/logo.svg';
 
 const Dashboard: React.FunctionComponent = () => {
@@ -29,6 +38,35 @@ const Dashboard: React.FunctionComponent = () => {
           </button>
         </HeaderContent>
       </Header>
+
+      <Content>
+        <Schedule>
+          <h1>Scheduled appointments</h1>
+
+          <p>
+            <span>Today</span>
+            <span>06</span>
+            <span>Monday</span>
+          </p>
+
+          <NextAppointment>
+            <strong>Next appointment</strong>
+            <div>
+              <img
+                src="https://avatars0.githubusercontent.com/u/20077278?s=460&u=a7b431b3bf36f4315891c81c21d97b7d4a8f73aa&v=4"
+                alt="Wlad"
+              />
+
+              <strong>Wladi</strong>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+            </div>
+          </NextAppointment>
+        </Schedule>
+        <Calendar />
+      </Content>
     </Container>
   );
 };
