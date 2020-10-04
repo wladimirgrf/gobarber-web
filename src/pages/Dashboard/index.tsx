@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiPower, FiClock } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
@@ -11,11 +11,15 @@ import {
   Content,
   Schedule,
   NextAppointment,
+  Section,
+  Appointment,
   Calendar,
 } from './styles';
 import logoImg from '../../assets/logo.svg';
 
 const Dashboard: React.FunctionComponent = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const { signOut, user } = useAuth();
 
   return (
@@ -64,6 +68,62 @@ const Dashboard: React.FunctionComponent = () => {
               </span>
             </div>
           </NextAppointment>
+
+          <Section>
+            <strong>Morning</strong>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://avatars0.githubusercontent.com/u/20077278?s=460&u=a7b431b3bf36f4315891c81c21d97b7d4a8f73aa&v=4"
+                  alt="Wlad"
+                />
+
+                <strong>Wladi</strong>
+              </div>
+            </Appointment>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://avatars0.githubusercontent.com/u/20077278?s=460&u=a7b431b3bf36f4315891c81c21d97b7d4a8f73aa&v=4"
+                  alt="Wlad"
+                />
+
+                <strong>Wladi</strong>
+              </div>
+            </Appointment>
+          </Section>
+
+          <Section>
+            <strong>Afternoon</strong>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://avatars0.githubusercontent.com/u/20077278?s=460&u=a7b431b3bf36f4315891c81c21d97b7d4a8f73aa&v=4"
+                  alt="Wlad"
+                />
+
+                <strong>Wladi</strong>
+              </div>
+            </Appointment>
+          </Section>
         </Schedule>
         <Calendar />
       </Content>
