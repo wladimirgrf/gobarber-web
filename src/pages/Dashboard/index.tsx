@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import DayPicker, { DayModifiers } from 'react-day-picker';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, isToday, isAfter } from 'date-fns';
 
 import { FiPower, FiClock } from 'react-icons/fi';
 
@@ -81,8 +81,14 @@ const Dashboard: React.FunctionComponent = () => {
     });
   }, [appointments]);
 
+  const nextAppointment = useMemo(() => {
+    return appointments.find((appointment) =>
+      isAfter(parseISO(appointment.date), new Date()),
+    );
+  }, [appointments]);
+
   const handleDateChange = useCallback((day: Date, modifiers: DayModifiers) => {
-    if (modifiers.available) {
+    if (modifiers.available && !modifiers.disabled) {
       setSelectedDate(day);
     }
   }, []);
@@ -155,24 +161,30 @@ const Dashboard: React.FunctionComponent = () => {
             <span>{selectedWeekDayAsText}</span>
           </p>
 
-          <NextAppointment>
-            <strong>Next appointment</strong>
-            <div>
-              <img
-                src="https://avatars0.githubusercontent.com/u/20077278?s=460&u=a7b431b3bf36f4315891c81c21d97b7d4a8f73aa&v=4"
-                alt="Wlad"
-              />
+          {isToday(selectedDate) && nextAppointment && (
+            <NextAppointment>
+              <strong>Next appointment</strong>
+              <div>
+                <img
+                  src={nextAppointment.user.avatarUrl}
+                  alt={nextAppointment.user.name}
+                />
 
-              <strong>Wladi</strong>
-              <span>
-                <FiClock />
-                08:00
-              </span>
-            </div>
-          </NextAppointment>
+                <strong>{nextAppointment.user.name}</strong>
+                <span>
+                  <FiClock />
+                  {nextAppointment.hourFormatted}
+                </span>
+              </div>
+            </NextAppointment>
+          )}
 
           <Section>
             <strong>Morning</strong>
+
+            {morningAppointments.length === 0 && (
+              <p>You have no appointments for this period.</p>
+            )}
 
             {morningAppointments.map((appointment) => (
               <Appointment key={appointment.id}>
@@ -195,6 +207,10 @@ const Dashboard: React.FunctionComponent = () => {
 
           <Section>
             <strong>Afternoon</strong>
+
+            {afternoonAppointments.length === 0 && (
+              <p>You have no appointments for this period.</p>
+            )}
 
             {afternoonAppointments.map((appointment) => (
               <Appointment key={appointment.id}>
