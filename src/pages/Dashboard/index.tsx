@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import { format, parseISO, isToday, isAfter } from 'date-fns';
 
@@ -142,7 +143,9 @@ const Dashboard: React.FunctionComponent = () => {
 
             <div>
               <span>Welcome,</span>
-              <strong>{user.name}</strong>
+              <Link to="/profile">
+                <strong>{user.name}</strong>
+              </Link>
             </div>
           </Profile>
 
