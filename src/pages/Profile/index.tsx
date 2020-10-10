@@ -19,7 +19,9 @@ import { Container, Content, AvatarInput } from './styles';
 interface ProfileFormData {
   name: string;
   email: string;
+  oldPassword: string;
   password: string;
+  passwordConfirmation: string;
 }
 
 const Profile: React.FunctionComponent = () => {
@@ -58,21 +60,55 @@ const Profile: React.FunctionComponent = () => {
           email: Yup.string()
             .required('E-mail is required.')
             .email('Please enter a valid email address.'),
-          password: Yup.string().min(6, 'Minimum of 6 characters.'),
+          oldPassword: Yup.string(),
+          password: Yup.string().when('oldPassword', {
+            is: (val) => !!val.length,
+            then: Yup.string().required('Password is required'),
+            otherwise: Yup.string(),
+          }),
+          passwordConfirmation: Yup.string()
+            .when('oldPassword', {
+              is: (val) => !!val.length,
+              then: Yup.string().required('Confirm Password is required'),
+              otherwise: Yup.string(),
+            })
+            .oneOf([Yup.ref('password'), undefined], 'Password must match'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post('/users', data);
+        const {
+          name,
+          email,
+          oldPassword,
+          password,
+          passwordConfirmation,
+        } = data;
 
-        history.push('/');
+        const formData = {
+          name,
+          email,
+          ...(oldPassword
+            ? {
+                oldPassword,
+                password,
+                passwordConfirmation,
+              }
+            : {}),
+        };
+
+        const response = await api.put('/profile', formData);
+
+        updateUser(response.data);
+
+        history.push('/dashboard');
 
         addToast({
           type: 'success',
-          title: 'Thanks!',
-          description: 'Your account has been successfully created.',
+          title: 'Updated profile!',
+          description: 'Your information has been updated successfully.',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -83,12 +119,12 @@ const Profile: React.FunctionComponent = () => {
 
         addToast({
           type: 'error',
-          title: 'Sign Up failed!',
+          title: 'Update profile has failed!',
           description: 'Please, try again later.',
         });
       }
     },
-    [addToast, history],
+    [addToast, updateUser, history],
   );
 
   return (
