@@ -76,15 +76,23 @@ const SignIn: React.FunctionComponent = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Log In</h1>
 
-            <Input name="email" icon={FiMail} placeholder="Email" />
+            <Input
+              name="email"
+              icon={FiMail}
+              placeholder="Email"
+              data-testid="email-input"
+            />
             <Input
               name="password"
               icon={FiLock}
               type="password"
               placeholder="Password"
+              data-testid="password-input"
             />
 
-            <Button type="submit">Log In</Button>
+            <Button data-testid="login-button" type="submit">
+              Log In
+            </Button>
 
             <Link to="/forgot-password">Forgot password?</Link>
           </Form>
