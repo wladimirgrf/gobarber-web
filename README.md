@@ -31,7 +31,7 @@ Below the technologies, used to build this Web System:
 |<img height="50" src=".github/assets/unform.svg"> | <img alt="unform version" src="https://img.shields.io/badge/unform-v2.1.3-blue?color=%23FF9000"> |
 |<img height="50" src=".github/assets/jest.svg"> | <img alt="jest version" src="https://img.shields.io/badge/jest-v4.2.4-blue?color=%23FF9000"> |
 |<img height="48" src=".github/assets/react_router_dom.svg"> | <img alt="react_router_dom version" src="https://img.shields.io/badge/react_router_dom-v5.2.0-blue?color=%23FF9000"> |
-|<img height="50" src=".github/assets/styled_components.svg"> | <img alt="styled_components version" src="https://img.shields.io/badge/styled_components-v5.1.1-blue?color=%23FF9000"> |
+|<img height="50" src=".github/assets/styled_components.png"> | <img alt="styled_components version" src="https://img.shields.io/badge/styled_components-v5.1.1-blue?color=%23FF9000"> |
 |<img height="50" src=".github/assets/typescript.svg"> | <img alt="typescript version" src="https://img.shields.io/badge/typescript-v3.7.2-blue?color=%23FF9000"> |
 |<img height="50" src=".github/assets/eslint.svg"> | <img alt="eslint version" src="https://img.shields.io/badge/eslint-v6.8.0-blue?color=%23FF9000"> |
 |<img height="50" src=".github/assets/prettier.svg"> | <img alt="prettier version" src="https://img.shields.io/badge/prettier-v2.0.5-blue?color=%23FF9000"> |
