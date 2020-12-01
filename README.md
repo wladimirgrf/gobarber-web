@@ -27,7 +27,6 @@ Below the technologies, used to build this Web System:
 |                      Name                                   |                         Status                          |
 |:-----------------------------------------------------------:|:-------------------------------------------------------:|
 |<img height="50" src=".github/assets/react.svg"> | <img alt="react version" src="https://img.shields.io/badge/react-v16.13.1-blue?color=%23FF9000"> |
-|<img height="50" src=".github/assets/axios.svg"> | <img alt="axios version" src="https://img.shields.io/badge/axios-v0.19.2-blue?color=%23FF9000"> |
 |<img height="50" src=".github/assets/unform.svg"> | <img alt="unform version" src="https://img.shields.io/badge/unform-v2.1.3-blue?color=%23FF9000"> |
 |<img height="50" src=".github/assets/jest.svg"> | <img alt="jest version" src="https://img.shields.io/badge/jest-v4.2.4-blue?color=%23FF9000"> |
 |<img height="48" src=".github/assets/react_router_dom.svg"> | <img alt="react_router_dom version" src="https://img.shields.io/badge/react_router_dom-v5.2.0-blue?color=%23FF9000"> |
