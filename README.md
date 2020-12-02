@@ -9,7 +9,7 @@
 <p align="center">
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/wladimirgrf/gobarber-web?color=%23FF9000">
 
-  <a href="https://github.com/wladimirgrf/gobarber-api/commits/master">
+  <a href="https://github.com/wladimirgrf/gobarber-web/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/wladimirgrf/gobarber-web?color=%23FF9000">
   </a>
 
