@@ -40,7 +40,7 @@ Below the technologies, used to build this Web System:
 
 ### Requirements
 
-- Must have the [GoBarber API](https://github.com/wladimirgrf/gobarber-api) running.
+Must have the [GoBarber API](https://github.com/wladimirgrf/gobarber-api) running.
 
 **Clone the project and access the folder**
 
@@ -51,7 +51,7 @@ $ git clone https://github.com/wladimirgrf/gobarber-web.git && cd gobarber-web
 **Follow the steps below**
 
 ```bash
-# Install the dependencies
+# Project dependencies
 $ yarn
 
 # Start the client
