@@ -139,7 +139,14 @@ const Dashboard: React.FunctionComponent = () => {
           <img src={logoImg} alt="GoBarber" />
 
           <Profile>
-            <img src={user.avatarUrl} alt={user.name} />
+            <img
+              src={
+                user.avatarUrl
+                  ? user.avatarUrl
+                  : `https://ui-avatars.com/api/?name=${user.name}&font-size=0.33&size=56`
+              }
+              alt={user.name}
+            />
 
             <div>
               <span>Welcome,</span>

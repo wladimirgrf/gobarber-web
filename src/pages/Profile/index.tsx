@@ -147,7 +147,14 @@ const Profile: React.FunctionComponent = () => {
           }}
         >
           <AvatarInput>
-            <img src={user.avatarUrl} alt={user.name} />
+            <img
+              src={
+                user.avatarUrl
+                  ? user.avatarUrl
+                  : `https://ui-avatars.com/api/?name=${user.name}&font-size=0.33&size=186`
+              }
+              alt={user.name}
+            />
             <label htmlFor="avatar">
               <FiCamera />
               <input type="file" id="avatar" onChange={handleAvatarChange} />
