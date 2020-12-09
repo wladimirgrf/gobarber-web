@@ -83,7 +83,11 @@ const Dashboard: React.FunctionComponent = () => {
   }, [appointments]);
 
   const nextAppointment = useMemo(() => {
-    return appointments.find((appointment) =>
+    const sortedAppointmentsByDate: Appointment[] = appointments.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    );
+
+    return sortedAppointmentsByDate.find((appointment) =>
       isAfter(parseISO(appointment.date), new Date()),
     );
   }, [appointments]);
