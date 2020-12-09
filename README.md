@@ -20,6 +20,10 @@
   <img alt="GitHub" src="https://img.shields.io/github/license/wladimirgrf/gobarber-web?color=%23FF9000">
 </p>
 
+<p align="center">
+  <img alt="Layout" src=".github/assets/gobarber_jw.gif">
+</p>
+
 ## 🌍 Ecosystem
 
 Below the technologies, used to build this Web System:
