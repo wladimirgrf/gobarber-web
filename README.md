@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <img alt="Layout" src=".github/assets/gobarber_jw.gif">
+  <img alt="PAGE" src=".github/assets/gobarber_jw.gif">
 </p>
 
 ## 🌍 Ecosystem
